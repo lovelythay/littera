@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoricoEmprestimoCliente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1166584f-01a5-47b0-8697-5f4ed6e45420">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Littera"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT littera.emprestimo.data_devolucao,
+	littera.emprestimo.data_locacao,
+	littera.emprestimo.valor,
+	littera.emprestimo.multa,
+	littera.cliente.nome AS cliente,
+	littera.livro.nome AS livro,
+	littera.item_emprestimo.preco,
+	littera.item_emprestimo.multa AS livro_multa,
+	littera.item_emprestimo.data_real,
+	littera.item_emprestimo.situacao,
+	littera.emprestimo.caixa_data,
+	littera.emprestimo.cod_emprestimo
+FROM littera.item_emprestimo
+	INNER JOIN littera.emprestimo ON 
+	 littera.item_emprestimo.cod_emprestimo = littera.emprestimo.cod_emprestimo 
+	INNER JOIN littera.livro ON 
+	 littera.item_emprestimo.cod_livro = littera.livro.cod_livro 
+	INNER JOIN littera.cliente ON 
+	 littera.emprestimo.cod_cliente = littera.cliente.cod_cliente]]>
+	</queryString>
+	<field name="dataDevolucao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="data_devolucao"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_devolucao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.stringDevolucao]]></fieldDescription>
+	</field>
+	<field name="dataLocacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="data_locacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_locacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.stringLocacao]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="valor"/>
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.stringValor]]></fieldDescription>
+	</field>
+	<field name="multa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="multa"/>
+		<property name="com.jaspersoft.studio.field.label" value="multa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.stringMulta]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="cliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+		<fieldDescription><![CDATA[emprestimo.cliente.nome]]></fieldDescription>
+	</field>
+	<field name="livro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="livro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+		<fieldDescription><![CDATA[livro.nome]]></fieldDescription>
+	</field>
+	<field name="preco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="preco"/>
+		<property name="com.jaspersoft.studio.field.label" value="preco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item_emprestimo"/>
+		<fieldDescription><![CDATA[stringPreco]]></fieldDescription>
+	</field>
+	<field name="livro_multa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="multa"/>
+		<property name="com.jaspersoft.studio.field.label" value="livro_multa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item_emprestimo"/>
+		<fieldDescription><![CDATA[stringMulta]]></fieldDescription>
+	</field>
+	<field name="dataReal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="data_real"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_real"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="item_emprestimo"/>
+		<fieldDescription><![CDATA[stringDataReal]]></fieldDescription>
+	</field>
+	<field name="caixa_data" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="caixa_data"/>
+		<property name="com.jaspersoft.studio.field.label" value="caixa_data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.stringCaixa]]></fieldDescription>
+	</field>
+	<field name="cod_emprestimo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+		<fieldDescription><![CDATA[emprestimo.codigo]]></fieldDescription>
+	</field>
+	<group name="Empréstimo">
+		<groupExpression><![CDATA[$F{cod_emprestimo}]]></groupExpression>
+		<groupHeader>
+			<band height="85">
+				<textField>
+					<reportElement x="0" y="20" width="190" height="20" uuid="9314cc1e-1d00-4475-9918-c4b8844a3184"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Data de Devolução : "+$F{dataDevolucao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="0" width="180" height="20" uuid="ceedbc61-c87e-45ba-9fc5-d5ceef072f24"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Data de Locação : "+$F{dataLocacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="220" y="0" width="160" height="20" uuid="a06ec78f-3c16-46fc-9904-f5e80a5b70b5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Valor Total : "+$F{valor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="220" y="20" width="160" height="20" uuid="c5d117c7-7126-4026-a14b-df968d7f19ab"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Multa : "+$F{multa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="0" width="160" height="20" uuid="7b5b08d6-1aa5-4410-a439-93a4849ea796"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Pagamento : "+$F{caixa_data}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-1" y="50" width="557" height="1" uuid="336685d5-fc0d-4995-af4f-3e624786f52e"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="58" width="260" height="22" uuid="00048d8a-de26-4581-a436-55d143996e4a"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="Arial" size="13"/>
+					</textElement>
+					<text><![CDATA[Livro]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="79" width="557" height="1" uuid="f7daad59-2e65-4605-9763-0ea972e06e02"/>
+				</line>
+				<staticText>
+					<reportElement x="270" y="58" width="90" height="22" uuid="fe235431-1cb8-43b7-8bf7-b6647e9f7ff2"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="13"/>
+					</textElement>
+					<text><![CDATA[Preço]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="400" y="58" width="70" height="21" uuid="a7947b37-58fe-4602-bb08-161b62cc1fbd"/>
+					<textElement>
+						<font fontName="Arial" size="13"/>
+					</textElement>
+					<text><![CDATA[Devolução]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="480" y="57" width="66" height="23" uuid="156aa350-7047-49b1-be29-3a9865537c24"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="13"/>
+					</textElement>
+					<text><![CDATA[Multa]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="7">
+				<line>
+					<reportElement x="0" y="0" width="557" height="1" uuid="c76115ec-a469-4194-80d3-ebd9f0a0332a"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="557" height="30" uuid="8ff006c4-0f83-4b3e-81c2-4d4778a1afa6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial Black" size="20"/>
+				</textElement>
+				<text><![CDATA[Littera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="220" height="30" uuid="f2918a61-b0ff-4e06-84eb-b06084b69675"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Controle de Estoque para Sebos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="557" height="1" uuid="c2aa7396-851f-4f74-a1df-7e2ff9f2e549"/>
+			</line>
+			<textField pattern="dd / MM / yyyy">
+				<reportElement x="460" y="40" width="100" height="30" uuid="df1282e9-336d-4501-842c-d8d57a79fdaa"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="260" height="19" uuid="d98ecdc2-8ed1-4ee0-a923-06f509c19bbc"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Relatório - Histórico Empréstimo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="60" width="557" height="1" uuid="f65a7fdc-77b8-45cc-a38d-cd4ea3932fe5"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="29" width="400" height="30" uuid="c08a8b5b-5b41-458c-aa27-20df688d91ed"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="260" height="20" uuid="969867e5-2685-4799-a815-8982ce7dd640"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{livro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="90" height="20" uuid="fc0d2b7c-5ad0-4f8c-9b5b-1f71c0848185"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="70" height="20" uuid="565fc481-999a-44a0-9fdd-6c9ecbabbb97"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataReal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="56" height="20" uuid="78d00ba6-1759-47d0-9bbc-ef4e160ea814"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{livro_multa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="20" width="557" height="1" uuid="8a36516c-5ceb-4619-899d-01dc16136005"/>
+				<graphicElement>
+					<pen lineColor="#C9C9C9"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="5" width="100" height="21" uuid="26575a32-ab1f-4576-8b9f-e73d4d329db7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="5" width="100" height="21" uuid="015f4ce8-44d7-4026-881b-fc00713f21c8"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
