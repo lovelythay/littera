@@ -1,0 +1,502 @@
+package visao;
+
+import controle.ControleCliente;
+import controle.ControleEmprestimo;
+import controle.ControleVenda;
+import modelo.*;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TelaCliente extends JDialog {
+
+    private final List<Cliente> listaCliente = new ArrayList<>();
+    private final ControleCliente controle = new ControleCliente();
+
+    public TelaCliente(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+
+        setLocationRelativeTo(null);
+        tabCliente.getColumnModel().getColumn(0).setPreferredWidth(250);
+        tabCliente.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tabCliente.getColumnModel().getColumn(2).setPreferredWidth(200);
+
+        atualizarTabela();
+
+        URL url = this.getClass().getResource("/imagens/icon.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
+    }
+
+    private void atualizarTabela() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tabCliente.getModel();
+
+        modelo.setRowCount(0);
+
+        listaCliente.clear();
+        listaCliente.addAll(controle.pegarNome(txtPesquisar.getText()));
+
+        for (Cliente c : listaCliente) {
+
+            modelo.addRow(new Object[]{c.getCpf(), c.getNome(), c.getTelefone()
+            });
+
+        }
+
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabCliente = new javax.swing.JTable();
+        botCadastrar = new javax.swing.JButton();
+        botExcluir = new javax.swing.JButton();
+        botVer = new javax.swing.JButton();
+        botAlterar = new javax.swing.JButton();
+        botSair = new javax.swing.JButton();
+        txtPesquisar = new javax.swing.JTextField();
+        botPesquisar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        botHistoricoEmpréstimo = new javax.swing.JButton();
+        botHistoricoVenda = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("LITTERA - Gerenciar Clientes");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setFont(new java.awt.Font("Sitka Subheading", 0, 36)); // NOI18N
+        jLabel1.setText("Clientes");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabCliente.setModel(new DefaultTableModel(
+                new Object[][]{
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null}
+                },
+                new String[]{
+                        "CPF", "Nome", "Telefone"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                    false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabCliente);
+
+        botCadastrar.setBackground(new java.awt.Color(225, 225, 245));
+        botCadastrar.setText("CADASTRAR");
+        botCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botCadastrarActionPerformed(evt);
+            }
+        });
+
+        botExcluir.setBackground(new java.awt.Color(225, 225, 245));
+        botExcluir.setText("EXCLUIR");
+        botExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botExcluirActionPerformed(evt);
+            }
+        });
+
+        botVer.setBackground(new java.awt.Color(225, 225, 245));
+        botVer.setText("VER");
+        botVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botVerActionPerformed(evt);
+            }
+        });
+
+        botAlterar.setBackground(new java.awt.Color(225, 225, 245));
+        botAlterar.setText("ALTERAR");
+        botAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botAlterarActionPerformed(evt);
+            }
+        });
+
+        botSair.setBackground(new java.awt.Color(225, 225, 245));
+        botSair.setText("VOLTAR");
+        botSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botSairActionPerformed(evt);
+            }
+        });
+
+        txtPesquisar.setBackground(new java.awt.Color(235, 235, 255));
+        txtPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesquisarKeyTyped(evt);
+            }
+        });
+
+        botPesquisar.setBackground(new java.awt.Color(225, 225, 245));
+        botPesquisar.setText("PESQUISAR");
+        botPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botPesquisarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Cliente :");
+
+        botHistoricoEmpréstimo.setBackground(new java.awt.Color(225, 225, 245));
+        botHistoricoEmpréstimo.setText("HISTÓRICO EMPRÉSTIMO");
+        botHistoricoEmpréstimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botHistoricoEmpréstimoActionPerformed(evt);
+            }
+        });
+
+        botHistoricoVenda.setBackground(new java.awt.Color(225, 225, 245));
+        botHistoricoVenda.setText("HISTÓRICO COMPRA");
+        botHistoricoVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botHistoricoVendaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel3)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(46, 46, 46)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(botCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(botExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(botVer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(botAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(botSair, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(botPesquisar))))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(botHistoricoEmpréstimo)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(botHistoricoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(botPesquisar))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(botAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(botCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(botExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(botVer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(botSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(botHistoricoEmpréstimo)
+                                        .addComponent(botHistoricoVenda))
+                                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void botVerActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linha = tabCliente.getSelectedRow();
+
+        if (linha == -1) {
+
+            JOptionPane.showMessageDialog(null, "Selecione um cliente para visualizar.");
+        } else {
+
+            DadosCliente tela = new DadosCliente(null, true);
+
+            tela.setCliente(listaCliente.get(linha));
+            tela.desabilitar();
+
+            tela.setVisible(true);
+
+        }
+
+
+    }
+
+    private void botSairActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setVisible(false);
+    }
+
+    private void botCadastrarActionPerformed(java.awt.event.ActionEvent evt) {
+        DadosCliente tela = new DadosCliente(null, true);
+
+        tela.setVisible(true);
+
+        if (tela.isConfirmacao()) {
+
+            Cliente c = tela.getCliente();
+
+            controle.adicionar(c);
+
+            atualizarTabela();
+        }
+    }
+
+    private void botAlterarActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linha = tabCliente.getSelectedRow();
+
+        if (linha == -1) {
+
+            JOptionPane.showMessageDialog(this, "Selecione um cliente para alterar.");
+        } else {
+
+            DadosCliente tela = new DadosCliente(null, true);
+
+            tela.setCliente(listaCliente.get(linha));
+            tela.setVisible(true);
+
+            if (tela.isConfirmacao()) {
+
+                Cliente c = tela.getCliente();
+
+                controle.alterar(c);
+
+                atualizarTabela();
+            }
+        }
+    }
+
+    private void botExcluirActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linha = tabCliente.getSelectedRow();
+
+        if (linha == -1) {
+
+            JOptionPane.showMessageDialog(this, "Selecione um cliente para excluir.");
+        } else {
+
+            int resposta = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir esse cliente?", "Excluir Cliente", JOptionPane.YES_NO_OPTION);
+
+            if (resposta == JOptionPane.YES_NO_OPTION) {
+
+                Cliente c = listaCliente.get(linha);
+
+                ControleEmprestimo controleEmprestimo = new ControleEmprestimo();
+                ControleVenda controleVenda = new ControleVenda();
+
+                if (!controleEmprestimo.pegarCliente(c).isEmpty() || !controleVenda.pegarCliente(c).isEmpty()) {
+
+                    c.setAtivo(false);
+                    controle.alterar(c);
+                } else {
+
+                    controle.excluir(c);
+                }
+
+
+                JOptionPane.showMessageDialog(null, "Operação finalizada.");
+                atualizarTabela();
+            }
+
+        }
+    }
+
+    private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {
+        atualizarTabela();
+    }
+
+    private void botPesquisarActionPerformed(java.awt.event.ActionEvent evt) {
+        atualizarTabela();
+    }
+
+    private void botHistoricoEmpréstimoActionPerformed(java.awt.event.ActionEvent evt) {
+        int linha = tabCliente.getSelectedRow();
+
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione o cliente para visualizar seu histórico.");
+        } else {
+
+            Cliente cliente = listaCliente.get(linha);
+
+            List<ItemEmprestimo> historico = new ArrayList<>();
+
+            ControleEmprestimo controleE = new ControleEmprestimo();
+            historico.clear();
+
+            historico.addAll(controleE.pegarCliente(cliente));
+
+            if (!historico.isEmpty()) {
+                try {
+                    JasperReport relatorioCompilado
+                            = JasperCompileManager.compileReport("src/main/java/relatorio/relatorioHistoricoEmprestimo.jrxml");
+
+                    JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null,
+                            new JRBeanCollectionDataSource(historico));
+
+                    JDialog tela = new JDialog(this, "Relatório de Histórico do Cliente", true);
+                    tela.setSize(1000, 800);
+
+                    JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+
+                    tela.getContentPane().add(painelRelatorio);
+
+                    tela.setLocationRelativeTo(null);
+                    tela.setVisible(true);
+
+                } catch (JRException ex) {
+
+                    JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório.");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "O cliente não possui histórico de empréstimos. ");
+            }
+        }
+    }
+
+    private void botHistoricoVendaActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linha = tabCliente.getSelectedRow();
+
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione o cliente para visualizar seu histórico.");
+        } else {
+
+            Cliente cliente = listaCliente.get(linha);
+
+            List<ItemVenda> historico = new ArrayList<>();
+
+            ControleVenda controleV = new ControleVenda();
+            historico.clear();
+
+            historico.addAll(controleV.pegarCliente(cliente));
+
+            if (!historico.isEmpty()) {
+                try {
+                    JasperReport relatorioCompilado
+                            = JasperCompileManager.compileReport("src/main/java/relatorio/relatorioHistoricoVenda.jrxml");
+
+                    JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null,
+                            new JRBeanCollectionDataSource(historico));
+
+                    JDialog tela = new JDialog(this, "Relatório de Histórico do Cliente", true);
+                    tela.setSize(1000, 800);
+
+                    JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+
+                    tela.getContentPane().add(painelRelatorio);
+
+                    tela.setLocationRelativeTo(null);
+                    tela.setVisible(true);
+
+                } catch (JRException ex) {
+
+                    JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório.");
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "O cliente não possui histórico de compras.");
+
+            }
+        }
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botAlterar;
+    private javax.swing.JButton botCadastrar;
+    private javax.swing.JButton botExcluir;
+    private javax.swing.JButton botHistoricoEmpréstimo;
+    private javax.swing.JButton botHistoricoVenda;
+    private javax.swing.JButton botPesquisar;
+    private javax.swing.JButton botSair;
+    private javax.swing.JButton botVer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabCliente;
+    private javax.swing.JTextField txtPesquisar;
+    // End of variables declaration//GEN-END:variables
+}
