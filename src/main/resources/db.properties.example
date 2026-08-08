@@ -1,0 +1,3 @@
+db.url=jdbc:mysql://localhost:3306/littera?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo
+db.user=SEU_USUARIO
+db.password=SUA_SENHA
