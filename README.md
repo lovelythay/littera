@@ -151,8 +151,6 @@ O Littera foi desenvolvido para praticar conceitos de desenvolvimento back-end, 
 
 Desenvolvido por Thaynara Alves.
 
-[LinkedIn](www.linkedin.com/in/thaynaralves) • [Email](thaynaraalves.22k@gmail.com)
-
 📄<b>Licença</b>
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
